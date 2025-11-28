@@ -19,14 +19,14 @@ MyModel1.testMe();
 
 // Test 2: timestamps: true  
 const MySchema2 = new Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true }
 }, {
-  statics: {
-    testMe: function () {
-      console.log(`I'm a static method`);
-    }
-  },
   timestamps: true,
+  statics: {
+    testMe() {
+      return this.findOne({ name: 'test' });
+    }
+  }
 });
 
 const MyModel2 = mongoose.model('MyModel2', MySchema2);

@@ -223,28 +223,28 @@ declare module 'mongoose' {
     statics?: IfEquals<
       TStaticMethods,
       {},
-      { [name: string]: (this: TModelType, ...args: any[]) => unknown },
-      AddThisParameter<TStaticMethods, TModelType>
+      { [name: string]: (this: Model<DocType, QueryHelpers, TInstanceMethods, TVirtuals, any>, ...args: any[]) => unknown },
+      AddThisParameter<TStaticMethods, Model<DocType, QueryHelpers, TInstanceMethods, TVirtuals, any>>
     >
 
     /**
      * Document instance methods.
      */
     methods?: IfEquals<
-    TInstanceMethods,
-    {},
-    Record<any, (this: THydratedDocumentType, ...args: any) => unknown>,
-    AddThisParameter<TInstanceMethods, THydratedDocumentType> & AnyObject
+      TInstanceMethods,
+      {},
+      Record<any, (this: THydratedDocumentType, ...args: any) => unknown>,
+      AddThisParameter<TInstanceMethods, THydratedDocumentType> & AnyObject
     >
 
     /**
      * Query helper functions.
      */
     query?: IfEquals<
-    QueryHelpers,
-    {},
-    Record<any, <T extends QueryWithHelpers<unknown, THydratedDocumentType, QueryHelpers, DocType>>(this: T, ...args: any) => T>,
-    QueryHelpers
+      QueryHelpers,
+      {},
+      Record<any, <T extends QueryWithHelpers<unknown, THydratedDocumentType, QueryHelpers, DocType>>(this: T, ...args: any) => T>,
+      QueryHelpers
     >
 
     /**
